@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Editar Tarea</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismissModal()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item>
+      <ion-input label="Título" label-placement="floating" [(ngModel)]="task.title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-textarea label="Descripción" label-placement="floating" [(ngModel)]="task.description"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-select label="Categoría" [(ngModel)]="task.category">
+        <ion-select-option value="trabajo">Trabajo</ion-select-option>
+        <ion-select-option value="estudios">Estudios</ion-select-option>
+        <ion-select-option value="hogar">Hogar</ion-select-option>
+        <ion-select-option value="otro">Otro</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-select label="Prioridad" [(ngModel)]="task.priority">
+        <ion-select-option value="baja">Baja</ion-select-option>
+        <ion-select-option value="media">Media</ion-select-option>
+        <ion-select-option value="alta">Alta</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="full" (click)="saveChanges()" class="ion-margin-top">
+    Guardar Cambios
+  </ion-button>
+</ion-content>

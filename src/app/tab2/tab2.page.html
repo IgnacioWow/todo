@@ -1,12 +1,17 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-title>
-      Mis Tareas
+      Nueva Tarea
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Nueva Tarea</ion-title>
+    </ion-toolbar>
+  </ion-header>
 
   <ion-list>
     <ion-item>
@@ -40,29 +45,4 @@
     Añadir Tarea
   </ion-button>
 
-
-  <ion-list class="ion-margin-top">
-    <ion-item-sliding *ngFor="let task of tasks">
-      <ion-item>
-        <ion-checkbox [checked]="task.completed === 1" (ionChange)="toggleTask(task)" slot="start"></ion-checkbox>
-        <ion-label>
-          <h2>{{ task.title }}</h2>
-          <p>{{ task.description }}</p>
-          <p>
-            <ion-chip [color]="getPriorityColor(task.priority)">{{ task.priority }}</ion-chip>
-            <ion-chip>{{ task.category }}</ion-chip>
-          </p>
-        </ion-label>
-      </ion-item>
-
-      <ion-item-options side="end">
-        <ion-item-option color="warning" (click)="editTask(task)">
-          <ion-icon slot="icon-only" name="pencil"></ion-icon>
-        </ion-item-option>
-        <ion-item-option color="danger" (click)="deleteTask(task.id)">
-          <ion-icon slot="icon-only" name="trash"></ion-icon>
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-  </ion-list>
 </ion-content>

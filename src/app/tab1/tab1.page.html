@@ -1,17 +1,78 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
+<ion-header>
+  <ion-toolbar color="primary">
     <ion-title>
-      Tab 1
+      Listado de Tareas
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="ion-padding">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
+      <ion-title size="large">Mis Tareas</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <ion-item-divider>
+      <ion-label>Filtros</ion-label>
+  </ion-item-divider>
+
+  <ion-grid>
+      <ion-row>
+          <ion-col>
+              <ion-select [(ngModel)]="filterCategory" (ionChange)="applyFilters()" label="Categoría" label-placement="floating" interface="popover">
+                  <ion-select-option value="todas">Todas</ion-select-option>
+                  <ion-select-option value="trabajo">Trabajo</ion-select-option>
+                  <ion-select-option value="estudios">Estudios</ion-select-option>
+                  <ion-select-option value="hogar">Hogar</ion-select-option>
+                  <ion-select-option value="otro">Otro</ion-select-option>
+              </ion-select>
+          </ion-col>
+          <ion-col>
+              <ion-select [(ngModel)]="filterPriority" (ionChange)="applyFilters()" label="Prioridad" label-placement="floating" interface="popover">
+                  <ion-select-option value="todas">Todas</ion-select-option>
+                  <ion-select-option value="baja">Baja</ion-select-option>
+                  <ion-select-option value="media">Media</ion-select-option>
+                  <ion-select-option value="alta">Alta</ion-select-option>
+              </ion-select>
+          </ion-col>
+      </ion-row>
+  </ion-grid>
+  <ion-button (click)="clearFilters()" expand="full" fill="outline" size="small">
+      Limpiar Filtros
+  </ion-button>
+
+  <ion-list class="ion-margin-top">
+      <ion-item-sliding *ngFor="let task of filteredTasks">
+          <ion-item>
+  <ion-checkbox [checked]="task.completed === 1" (ionChange)="toggleTask(task)" slot="start"></ion-checkbox>
+  
+    <ion-label [class.completed]="task.completed === 1">
+    <h2>{{ task.title }}</h2>
+    <p>{{ task.description }}</p>
+    <p>
+      <ion-chip [color]="getPriorityColor(task.priority)">{{ task.priority }}</ion-chip>
+      <ion-chip>{{ task.category }}</ion-chip>
+    </p>
+    </ion-label>
+    </ion-item>
+    
+          <ion-item-options side="end">
+            <ion-item-option color="warning" (click)="editTask(task)">
+              <ion-icon slot="icon-only" name="pencil"></ion-icon>
+            </ion-item-option>
+            <ion-item-option color="danger" (click)="deleteTask(task.id)">
+              <ion-icon slot="icon-only" name="trash"></ion-icon>
+            </ion-item-option>
+          </ion-item-options>
+      </ion-item-sliding>
+
+      <ion-item *ngIf="filteredTasks.length === 0" lines="none">
+          <ion-label class="ion-text-center ion-padding">
+            <p>¡No hay tareas que mostrar!</p>
+            <p>Ve a CREAR para agregar una nueva.</p>
+          </ion-label>
+      </ion-item>
+  </ion-list>
+
 </ion-content>

@@ -5,7 +5,11 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+  },  {
+    path: 'edit-task-modal',
+    loadChildren: () => import('./components/edit-task-modal/edit-task-modal.module').then( m => m.EditTaskModalPageModule)
   }
+
 ];
 @NgModule({
   imports: [

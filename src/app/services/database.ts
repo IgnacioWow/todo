@@ -16,7 +16,6 @@ export class DatabaseService {
         name: 'todo.db',
         location: 'default'
       });
-      // 1. ACTUALIZAR LA ESTRUCTURA DE LA TABLA
       await this.db.executeSql(`
         CREATE TABLE IF NOT EXISTS tasks (
           id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -28,7 +27,8 @@ export class DatabaseService {
         )
       `, []);
     } catch (error) {
-      console.error('Error al abrir la base de datos', error);
+      // AQUÍ ESTÁ LA CORRECCIÓN
+      console.error('Error detallado al abrir la base de datos: ', JSON.stringify(error));
     }
   }
 

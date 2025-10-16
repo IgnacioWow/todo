@@ -1,17 +1,33 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
+<ion-header>
+  <ion-toolbar color="primary">
     <ion-title>
-      Tab 3
+      Créditos
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="ion-padding">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
+      <ion-title size="large">Créditos</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  <ion-card class="ion-text-center">
+    <img src="assets/img/logo.png" alt="Logo de la Institución" class="logo-image" />
+
+    <ion-card-header>
+      <ion-card-title>ToDo App v1.0</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>
+        <strong>DESARROLLADO POR</strong>
+      </p>
+      <p>
+        Ignacio Williams
+      </p>
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>
